@@ -1,0 +1,45 @@
+{"players": [
+  {
+    "idPlayer": 2,
+    "img": "../assets/img/trumpy.png",
+    "pseudo": "Trump",
+    "score": "",
+    "ally": "",
+    "lock": 0,
+    "lockType": "",
+    "type": "",
+    "IdArgument": 0,
+    "played": "",
+    "color": "#eca800",
+    "toPlay": "*"
+  },
+  {
+    "idPlayer": 3,
+    "img": "../assets/img/macron.png",
+    "pseudo": "Macron",
+    "score": "",
+    "ally": "",
+    "lock": 0,
+    "lockType": "",
+    "type": "",
+    "IdArgument": 0,
+    "played": "",
+    "color": "#ff5626",
+    "toPlay": ""
+  },
+  {
+    "idPlayer": 4,
+    "img": "../assets/img/clinton.png",
+    "pseudo": "Clinton",
+    "score": "",
+    "ally": "",
+    "lock": 0,
+    "lockType": "",
+    "type": "",
+    "IdArgument": 0,
+    "played": "",
+    "color": "#e00914",
+    "toPlay": ""
+  }
+]
+}

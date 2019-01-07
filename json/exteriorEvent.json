@@ -1,0 +1,19 @@
+{"exteriorEvent  ": [
+        {
+            "IdEvent": 1,
+            "type": "PO",
+            "title ": "Coupe du monde",
+            "description": "",
+            "category": "EE",
+            "statut": "on"
+        },
+        {
+            "IdEvent": 1,
+            "type": "PO",
+            "title ": "Lobby",
+            "description": "",
+            "category": "LO",
+            "statut": "on"
+        } 
+    ]
+}

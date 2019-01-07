@@ -1,0 +1,323 @@
+{"newsArguments": [
+        {
+            "IdNews": 1,
+            "IdArgument": 1,
+            "type": "CO",
+            "force": 1,
+            "value": 262532,
+            "statut": "on"
+        },
+        {
+            "IdNews": 1,
+            "IdArgument": 2,
+            "type": "CO",
+            "force": 2,
+            "value": 453746,
+            "statut": "on"
+        },
+        {
+            "IdNews": 1,
+            "IdArgument": 3,
+            "type": "PO",
+            "force": 3,
+            "value": 739483,
+            "statut": "on"
+        },
+        {
+            "IdNews": 1,
+            "IdArgument": 4,
+            "type": "PO",
+            "force": 3,
+            "value": 739483,
+            "statut": "on"
+        },
+        {
+            "IdNews": 2,
+            "IdArgument": 4,
+            "type": "PO",
+            "force": 1,
+            "value": 298641,
+            "statut": "on"
+        },
+        {
+            "IdNews": 2,
+            "IdArgument": 5,
+            "type": "CO",
+            "force": 2,
+            "value": 437382,
+            "statut": "on"
+        },
+        {
+            "IdNews": 2,
+            "IdArgument": 6,
+            "type": "CO",
+            "force": 3,
+            "value": 710183,
+            "statut": "on"
+        },
+        {
+            "IdNews": 3,
+            "IdArgument": 7,
+            "type": "PO",
+            "force": 1,
+            "value": 242786,
+            "statut": "on"
+        },
+        {
+            "IdNews": 3,
+            "IdArgument": 8,
+            "type": "CO",
+            "force": 3,
+            "value": 723287,
+            "statut": "on"
+        },
+        {
+            "IdNews": 3,
+            "IdArgument": 9,
+            "type": "PO",
+            "force": 1,
+            "value": 246971,
+            "statut": "on"
+        },
+        {
+            "IdNews": 4,
+            "IdArgument": 10,
+            "type": "PO",
+            "force": 1,
+            "value": 280543,
+            "statut": "on"
+        },
+        {
+            "IdNews": 4,
+            "IdArgument": 11,
+            "type": "PO",
+            "force": 2,
+            "value": 497174,
+            "statut": "on"
+        },
+        {
+            "IdNews": 4,
+            "IdArgument": 12,
+            "type": "CO",
+            "force": 3,
+            "value": 749711,
+            "statut": "on"
+        },
+        {
+            "IdNews": 5,
+            "IdArgument": 13,
+            "type": "PO",
+            "force": 1,
+            "value": 298432,
+            "statut": "on"
+        },
+        {
+            "IdNews": 5,
+            "IdArgument": 14,
+            "type": "CO",
+            "force": 2,
+            "value": 468431,
+            "statut": "on"
+        },
+        {
+            "IdNews": 5,
+            "IdArgument": 15,
+            "type": "CO",
+            "force": 1,
+            "value": 267412,
+            "statut": "on"
+        },
+        {
+            "IdNews": 6,
+            "IdArgument": 16,
+            "type": "PO",
+            "force": 3,
+            "value": 763730,
+            "statut": "on"
+        },
+        {
+            "IdNews": 6,
+            "IdArgument": 17,
+            "type": "PO",
+            "force": 2,
+            "value": 488124,
+            "statut": "on"
+        },
+        {
+            "IdNews": 6,
+            "IdArgument": 18,
+            "type": "CO",
+            "force": 2,
+            "value": 439131,
+            "statut": "on"
+        },
+        {
+            "IdNews": 7,
+            "IdArgument": 19,
+            "type": "CO",
+            "force": 1,
+            "value": 277390,
+            "statut": "on"
+        },
+        {
+            "IdNews": 7,
+            "IdArgument": 20,
+            "type": "CO",
+            "force": 2,
+            "value": 469613,
+            "statut": "on"
+        },
+        {
+            "IdNews": 7,
+            "IdArgument": 21,
+            "type": "CO",
+            "force": 2,
+            "value": 428429,
+            "statut": "on"
+        },
+        {
+            "IdNews": 8,
+            "IdArgument": 22,
+            "type": "CO",
+            "force": 2,
+            "value": 438295,
+            "statut": "on"
+        },
+        {
+            "IdNews": 8,
+            "IdArgument": 23,
+            "type": "CO",
+            "force": 1,
+            "value": 252744,
+            "statut": "on"
+        },
+        {
+            "IdNews": 8,
+            "IdArgument": 24,
+            "type": "PO",
+            "force": 2,
+            "value": 422910,
+            "statut": "on"
+        },
+        {
+            "IdNews": 9,
+            "IdArgument": 25,
+            "type": "PO",
+            "force": 2,
+            "value": 461100,
+            "statut": "on"
+        },
+        {
+            "IdNews": 9,
+            "IdArgument": 26,
+            "type": "CO",
+            "force": 1,
+            "value": 290103,
+            "statut": "on"
+        },
+        {
+            "IdNews": 9,
+            "IdArgument": 27,
+            "type": "CO",
+            "force": 2,
+            "value": 421819,
+            "statut": "on"
+        },
+        {
+            "IdNews": 0,
+            "IdArgument": 28,
+            "type": "CO",
+            "force": 2,
+            "value": 404720,
+            "statut": "on"
+        },
+        {
+            "IdNews": 0,
+            "IdArgument": 29,
+            "type": "CO",
+            "force": 1,
+            "value": 478992,
+            "statut": "on"
+        },
+        {
+            "IdNews": 0,
+            "IdArgument": 30,
+            "type": "CO",
+            "force": 2,
+            "value": 422842,
+            "statut": "on"
+        },
+        {
+            "IdNews": 2,
+            "IdArgument": 1,
+            "type": "CO",
+            "force": 3,
+            "value": 710183,
+            "statut": "on"
+        },
+        {
+            "IdNews": 3,
+            "IdArgument": 1,
+            "type": "PO",
+            "force": 1,
+            "value": 246971,
+            "statut": "on"
+        },
+        {
+            "IdNews": 4,
+            "IdArgument": 1,
+            "type": "PO",
+            "force": 2,
+            "value": 497174,
+            "statut": "on"
+        },
+        {
+            "IdNews": 5,
+            "IdArgument": 1,
+            "type": "CO",
+            "force": 2,
+            "value": 468431,
+            "statut": "on"
+        },
+        {
+            "IdNews": 6,
+            "IdArgument": 1,
+            "type": "CO",
+            "force": 2,
+            "value": 439131,
+            "statut": "on"
+        },
+        {
+            "IdNews": 7,
+            "IdArgument": 1,
+            "type": "CO",
+            "force": 2,
+            "value": 428429,
+            "statut": "on"
+        },
+        {
+            "IdNews": 8,
+            "IdArgument": 1,
+            "type": "PO",
+            "force": 2,
+            "value": 422910,
+            "statut": "on"
+        },
+        {
+            "IdNews": 9,
+            "IdArgument": 1,
+            "type": "CO",
+            "force": 2,
+            "value": 421819,
+            "statut": "on"
+        },
+        {
+            "IdNews": 0,
+            "IdArgument": 1,
+            "type": "CO",
+            "force": 2,
+            "value": 422842,
+            "statut": "on"
+        }
+    ]
+}

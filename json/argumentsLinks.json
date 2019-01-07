@@ -1,0 +1,15 @@
+{"argumentsLinks ": [
+        {
+            "IdArgument": 18,
+            "IdArgumentImpacted": 17,
+            "type ": "CA",
+            "statut": "on"
+        },
+        {
+            "IdArgument": 9,
+            "IdArgumentImpacted": 8,
+            "type ": "CA",
+            "statut": "on"
+        }
+    ]
+}

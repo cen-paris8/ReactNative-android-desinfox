@@ -1,0 +1,83 @@
+{"news": [{
+      "IdNews": 1,
+      "source": "AFP: ",
+      "description": "Macron est le candidat préféré de l'Arabie Saoudite, qui aurait financé sa campagne à hauteur de 30% du budget total",
+      "bonus": 1000000,
+      "malus": 300000,
+      "status": "on",
+      "force": 2
+    },
+    {
+      "IdNews": 2,
+      "source": "Un tweet polémique d'Alex Mercier, journaliste indépendant: ",
+      "description": "Une photo de Jean Luc Mélanchon, candidat à la présidentielle, portant à son poignet une montre Rolex à 17.750€.",
+      "bonus": 1000000,
+      "malus": 300000,
+      "status": "on",
+      "force": 2
+    },
+    {
+      "IdNews": 3,
+      "source": "People Magazine: ",
+      "description": "Marine Le Pen se serait découverte des origines arabes, ce qui dérangerait 50% de ses électeurs.",
+      "bonus": 1200000,
+      "malus": 350000,
+      "status": "on",
+      "force": 2
+    },
+    {
+      "IdNews": 4,
+      "source": "Brut: ",
+      "description": "Selon le chercheur, Henri Smith, il sera désormais possible de changer la couleur de ses yeux.",
+      "bonus": 1000000,
+      "malus": 300000,
+      "status": "on",
+      "force": 2
+    },
+    {
+      "IdNews": 5,
+      "source": "Bitcoin.ru",
+      "description": "Dans la réforme des impôts prévues pour 2019, il sera possible de payer vos impôts en bitcoin.",
+      "bonus": 650000,
+      "malus": 150000,
+      "status": "on",
+      "force": 2
+    },
+    {
+      "IdNews": 6,
+      "source": "AFP: ",
+      "description": "En cas de victoire, Valérie Pécresse, qui sera alors Ministre de l'Intérieur, doublera la peine de prison pour les résidents de Seine-Saint-Denis. Elle a annoncé cela lors de son meeting à Strasbourg.",
+      "bonus": 900000,
+      "malus": 275000,
+      "status": "on",
+      "force": 2
+    },
+    {
+      "IdNews": 7,
+      "source": "Un tweet polémique des Gilets Jaunes: ",
+      "description": "L'Etat français a conduit lui-même les attentats de Strasbourg pour mettre un terme médiatique au mouvement des gilets jaunes.",
+      "bonus": 650000,
+      "malus": 150000,
+      "status": "on",
+      "force": 2
+    },
+    {
+      "IdNews": 8,
+      "source": "Jean-Michel Mercier, porte parole du gouvernement: ",
+      "description": "La baisse des APL serait de l'ordre d'idée du prix d'un paquet de pâtes.",
+      "bonus": 1000000,
+      "malus": 300000,
+      "status": "on",
+      "force": 2
+    },
+    {
+      "IdNews": 9,
+      "source": "Journal Labération: ",
+      "description": "Le directeur de l'ANPE a déclaré ce samedi vouloir supprimer les passages-piétons devant ses agences pour éviter que les demandeurs d'emplois ne trouvent du travail trop facilement.",
+      "bonus": 750000,
+      "malus": 150000,
+      "status": "on",
+      "force": 2
+    }
+  ]
+}

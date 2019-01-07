@@ -1,0 +1,12 @@
+{
+  "newsNb": 0,
+  "totalArgumentPO": 0,
+  "totalArgumentCO": 0,
+  "turnNb": 0,
+  "roundNb": 0,
+  "endGame": false,
+  "newsValue": 0,
+  "newsDescription": "",
+  "bonus": 0,
+  "malus": 0
+}
