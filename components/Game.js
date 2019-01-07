@@ -44,9 +44,7 @@ class Game extends Component {
 
   removeStorage = () => {
       console.log("remove storage");
-      //this._removeData('players');
-      //this._removeData('news');
-      //this._removeData('game');
+      //force clean Breaking news ID if not already remove
       serv._removeData('breakingNews');
       //this.props.setParentState({infoScreen: true});
       
@@ -72,13 +70,7 @@ class Game extends Component {
       //this.props.setParentState({infoScreen: true})
       //console.log("this.state.playerToPlay: " + this.state.playerToPlay);
      // console.log("this.state.b: " + this.state.playerToPlay);
-console.log("render game");
-      /*console.log("this.props.players[i] : " + this.props.players[0].score
-      +" "+ this.props.players[1].score
-      +" "+ this.props.players[2].score
-      +" "+ this.props.players[3].score
-      );    
-      */          
+        console.log("render game");        
     return (
         <View>
               <View style ={{
@@ -158,8 +150,7 @@ console.log("render game");
                                 </View>
                             </TouchableHighlight>
                         </View>
-                    </View>
-                    
+                    </View>                    
             </View>
         </View>
     );

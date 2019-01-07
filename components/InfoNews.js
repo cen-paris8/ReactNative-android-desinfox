@@ -15,7 +15,6 @@ class InfoNews extends Component {
                     position: "relative"
                   }, // state
         zIndex: -1, // state
-        infoNewsMsg: this.props.alert // state
     }
   }
 
@@ -27,17 +26,13 @@ class InfoNews extends Component {
 }
 
 removeAlert = () => {
-  //Null this.setState(() => ({infoNewsMsg: ""}));
-  // In store
-  //this.props.setParentState({alertRead: true});
-  //this.props.setParentState({IdArgument: 1});
-  serv._storeData("alertRead", true);
+  //serv._storeData("alertRead", true);
   //serv._storeData("IdArgument", 1);
   this.props.setParentState({infoScreen: false});
   this.props.setParentState({top: -255});
   // To Check if usefull...
-  //this._retrieveData(false);
-  // To Test to remove to sup
+  // this._retrieveData(false);
+  // To Test => to remove to sup
   this.props.initAlert();
 }
 
@@ -45,13 +40,11 @@ _retrieveData = async (alert) => {
   try {
     // get news from storage if already running
    console.log("retreive News");
-   console.log("this.state.infoNewsMsg: " + this.state.infoNewsMsg);
    if ( alert == true && this.props.alertDesc !== undefined && this.props.alertDesc !== ""){
-    //this.setState(() => ({ news: this.state.infoNewsMsg})); 
-    this.props.setParentState(() => ({alert: ""}));
+    this.props.setParentState(() => ({alertDesc: ""}));
     //this.setState({zIndex: 11});
     //this.props.setParentState(() => ({IdArgument: 0}));
-     return this.props.alert;
+     return this.props.alertDesc;
    }
    
     var breakingNews = await AsyncStorage.getItem('breakingNews');

@@ -110,34 +110,10 @@ export default class App extends React.Component {
     if ( this.state.newsArguments == [] ){
       // change store for state
       var newsArguments = this.state.newsArguments;
-      /*
-      serv._retrieveDataArray("newsArguments")
-      .then((retrievedObjectArg) => {
-        //console.log("retrievedObjectArg : "+ retrievedObjectArg);
-        var newsArguments = retrievedObjectArg;
-        this.setState({newsArguments: newsArguments});
-      })  
-      .catch((err) => {
-        console.log ("no newsArguments in App.js l112" + err)
-        // Handle error, Object either doesn't exist, expired or a system error
-     });
-     */
     }
     if (this.state.players == []){
       // change store for state
       var players = this.state.players;
-      /*
-        serv._retrieveDataArray("players")
-        .then((retrievedObjectPlay) => {
-          //console.log("retrievedObjectArg : "+ retrievedObjectArg);
-          var players = retrievedObjectPlay;
-          this.setState({players: players});
-        })  
-        .catch((err) => {
-          console.log ("no players in App.js l124" + err)
-          // Handle error, Object either doesn't exist, expired or a system error
-      });
-      */
     }
 
     // manage end game
