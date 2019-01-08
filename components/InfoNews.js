@@ -23,13 +23,15 @@ class InfoNews extends Component {
     this._retrieveData(false);
     this.setState({zIndex: -1});
     this.setState({opacity: 1});
+    // infoScreen is true
+    this.props.setParentState({top: 22});
 }
 
 removeAlert = () => {
   //serv._storeData("alertRead", true);
   //serv._storeData("IdArgument", 1);
   this.props.setParentState({infoScreen: false});
-  this.props.setParentState({top: -255});
+  this.props.setParentState({top: -252});
   // To Check if usefull...
   // this._retrieveData(false);
   // To Test => to remove to sup
@@ -42,7 +44,10 @@ _retrieveData = async (alert) => {
    console.log("retreive News");
    if ( alert == true && this.props.alertDesc !== undefined && this.props.alertDesc !== ""){
     this.props.setParentState(() => ({alertDesc: ""}));
+    //this.setState({top: 22});
+    this.props.setParentState(() => ({top: 22}));
     //this.setState({zIndex: 11});
+
     //this.props.setParentState(() => ({IdArgument: 0}));
      return this.props.alertDesc;
    }
@@ -98,6 +103,9 @@ _retrieveData = async (alert) => {
         serv._storeData("IdNews", infoNews[keyNews].IdNews);
         
         this.props.setParentState({IdNews: infoNews[keyNews].IdNews});
+        delete infoNews[keyNews];
+        serv._storeData("news", infoNews);
+
       }
 
    } catch (error) {
@@ -145,7 +153,7 @@ infoStyles = (value) => {
 hideNews = () => {
   console.log("cache la news");
   this.props.setParentState({infoScreen: false});
-  this.props.setParentState({top: -255});
+  this.props.setParentState({top: -252});
 
 }
 

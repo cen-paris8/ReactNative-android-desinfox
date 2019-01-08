@@ -9,7 +9,7 @@
         },
         {
             "IdNews": 1,
-            "IdArgument": 2,
+            "IdArgument": "04A482D2204B80",
             "type": "CO",
             "force": 2,
             "value": 453746,
@@ -49,7 +49,7 @@
         },
         {
             "IdNews": 2,
-            "IdArgument": 6,
+            "IdArgument": "048B83D2204B80",
             "type": "CO",
             "force": 3,
             "value": 710183,
@@ -65,7 +65,7 @@
         },
         {
             "IdNews": 3,
-            "IdArgument": 8,
+            "IdArgument": "049C82D2204B80",
             "type": "CO",
             "force": 3,
             "value": 723287,
@@ -105,7 +105,7 @@
         },
         {
             "IdNews": 5,
-            "IdArgument": 13,
+            "IdArgument": "045A84D2204B80",
             "type": "PO",
             "force": 1,
             "value": 298432,
@@ -121,7 +121,7 @@
         },
         {
             "IdNews": 5,
-            "IdArgument": 15,
+            "IdArgument": "044E5D32215281",
             "type": "CO",
             "force": 1,
             "value": 267412,
@@ -129,7 +129,7 @@
         },
         {
             "IdNews": 6,
-            "IdArgument": 16,
+            "IdArgument": "047484D2204B80",
             "type": "PO",
             "force": 3,
             "value": 763730,
@@ -137,7 +137,7 @@
         },
         {
             "IdNews": 6,
-            "IdArgument": 17,
+            "IdArgument": "047C84D2204B80",
             "type": "PO",
             "force": 2,
             "value": 488124,
@@ -169,7 +169,7 @@
         },
         {
             "IdNews": 7,
-            "IdArgument": 21,
+            "IdArgument": "048484D2204B80",
             "type": "CO",
             "force": 2,
             "value": 428429,
@@ -185,7 +185,7 @@
         },
         {
             "IdNews": 8,
-            "IdArgument": 23,
+            "IdArgument": "049282D2204B80",
             "type": "CO",
             "force": 1,
             "value": 252744,

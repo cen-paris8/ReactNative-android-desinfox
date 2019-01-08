@@ -8,6 +8,7 @@ import News from "./components/InfoNews";
 import Score from "./components/Score";
 import * as serv from "./scripts/services";
 import newsArgumentsData from "./json/newsArguments.json";
+import argumentsData from "./json/arguments.json";
 import Data from './json/players.json';
 import { startNFC, stopNFC } from "./helpers/NFCHelper";
 
@@ -20,7 +21,7 @@ export default class App extends React.Component {
       gameScreen: false,
       top: 22,
       infoScreen: false,
-      scoreSreen: false,
+      scoreScreen: false,
       startUpScreen: false,
       IdNews: 1, // store
       IdArgument: 1, //store
@@ -34,7 +35,8 @@ export default class App extends React.Component {
       players: Data.players, // store && state
       endRound: false, // store
       endGame: false, // store   
-      newsArguments: newsArgumentsData.newsArguments
+      newsArguments: newsArgumentsData.newsArguments,
+      argumentsData: argumentsData.arguments
     }
   }
   /*
@@ -75,7 +77,8 @@ export default class App extends React.Component {
       console.error(nfcResult.Error.Message);
     } else {
       console.log("NFC tag id " + nfcResult.tagId);
-      this.setState({IdArgument: 1});
+      this.setState({IdArgument: nfcResult.tagId});
+      //this.setState({IdArgument: 1});
       this.checkChange();
     }
   };
@@ -83,6 +86,8 @@ export default class App extends React.Component {
   Manage new argument played
   */
   checkChange = () => {
+    console.log("this.state.infoScreen :" + this.state.infoScreen);
+    console.log("this.state.top1 : " + this.state.top);
           //console.log("this.state.gameScreen : " + this.state.gameScreen);
           if (this.state.gameScreen === false) {
             return false;
@@ -97,7 +102,11 @@ export default class App extends React.Component {
                     game = JSON.parse(retrievedObjectGame);
                     this.setState({game: game});
                     console.log ("retreive game");
+  console.log("this.state.infoScreen :" + this.state.infoScreen);
+  console.log("this.state.top2 : " + this.state.top);
                     this.checkChangeArgument();
+  console.log("this.state.infoScreen :" + this.state.infoScreen);
+  console.log("this.state.top3 : " + this.state.top);
                     this.setState({gameScreen: true});
                   })
                   .catch((err) => {
@@ -127,7 +136,11 @@ export default class App extends React.Component {
       //is carte piège ?
 
       // is argument available with news
+      console.log("this.state.infoScreen :" + this.state.infoScreen);
+      console.log("this.state.top4 : " + this.state.top);
       var isArgumentAvailable = this.isArgumentAvailable();
+      console.log("this.state.infoScreen :" + this.state.infoScreen);
+      console.log("this.state.top5 : " + this.state.top);
       if (isArgumentAvailable === false){
         console.log("!this.isArgumentAvailable()");
       }
@@ -154,6 +167,19 @@ export default class App extends React.Component {
     var winnerNb = 0;
     var looserNb = 0;
     var players = this.state.players;
+    var breakingNews = -1;
+    /*
+    serv._retrieveData("breakingNews")
+            .then((retrievedBNews) => {
+              breakingNews = retrievedBNews;
+              //this.endRoundProcess();
+            })
+            .catch((err) => {
+              console.log ("no game in App.js l157" + err)
+              // Handle error, Object either doesn't exist, expired or a system error
+          }); 
+          */
+
     serv._retrieveData("game")
             .then((retrievedObjectGame) => {
               game = JSON.parse(retrievedObjectGame);
@@ -207,9 +233,13 @@ export default class App extends React.Component {
               game.totalArgumentCO = 0;
               game.bonus = 0;
               game.malus = 0;
+              console.log("ER - 0 update game store");
               this.setState({game: game});
               serv._storeData("game", game);
-              serv._removeData('breakingNews');
+              // clean breakingNews
+              serv._removeData("breakingNews");
+              console.log("ER - 3 scoreScreen to show");
+              // Show Score screen
               this.setState({scoreScreen: true});
               this.setState({gameScreen: false});
               //this.setState({infoScreen: false});
@@ -245,40 +275,65 @@ Reset alert when already red
     console.log ("newsArguments : " + newsArguments)
     var argPlayed = [];
     var index;
+    console.log("this.state.infoScreen :" + this.state.infoScreen);
+    console.log("this.state.top6 : " + this.state.top);
+    // check GA & Ally
+    var argumentsData = this.state.argumentsData;
+    for (x in argumentsData) {
+      console.log("perc IdArgument : " + IdArgument);
+      console.log(" perc argumentsData[x].IdArgument : "+ argumentsData[x].IdArgument );
+      console.log(" perc argumentsData[x].IdArgument == IdArgument :" + (argumentsData[x].IdArgument == IdArgument));
+       console.log(" perc argumentsData[x].category " + argumentsData[x].category );
+       console.log(" perc coucou");
+      if (argumentsData[x].IdArgument == IdArgument && argumentsData[x].category == "POL"){
+          console.log ("joueur perc")
+          this.setState(() => ({alertDesc: "Choisis le joueur perquisitionné"}));
+          this.setState(() => ({alertColor: "#008a01"})); //green
+          //this.setState({top: 22});
+          this.setState({infoScreen: true});
+          this.setPOL();
+            console.log("Carte piège");
+            return false;
+        } else if (argumentsData[x].IdArgument == IdArgument && argumentsData[x].category == "ALI"){
+          this.setState(() => ({alertDesc: "Choisis ton allié"}));
+          this.setState(() => ({alertColor: "#008a01"})); //green
+          //this.setState({top: 22});
+          this.setState({infoScreen: true});
+          this.setAlly();
+            console.log("Carte piège");
+            this.setState({gameScreen: true});
+            return false;
+        } 
+    }
+    
     for (x in newsArguments) {
           //console.log("newsArguments[x].IdNews: " + newsArguments[x].IdNews );
           //console.log("newsArguments[x].IdArgument: " +newsArguments[x].IdArgument); 
           if (newsArguments[x].IdNews == IdBreakingNews &&
               newsArguments[x].IdArgument == IdArgument){
+            console.log("IdArgument : " + IdArgument);
             console.log("Argument valide");
             this.setState(() => ({argPlayed: newsArguments[x]}));
             serv._storeData("argPlayed", newsArguments[x]);
             argPlayed = newsArguments[x];
             index = x;
-          } else if (newsArguments[x].IdArgument == IdArgument && newsArguments[x].category == "POL"){
-            this.setState(() => ({alertDesc: "Choisis le joueur perquisitionné"}));
-            this.setState(() => ({alertColor: "#008a01"})); //green
-            this.setState({top: 22});
-            this.setState({infoScreen: true});
-            this.setPOL();
-              console.log("Carte piège");
-              return false;
-          } else if (newsArguments[x].IdArgument == IdArgument && newsArguments[x].category == "POL"){
-            this.setState(() => ({alertDesc: "Choisis ton allié"}));
-            this.setState(() => ({alertColor: "#008a01"})); //green
-            this.setState({top: 22});
-            this.setState({infoScreen: true});
-            this.setAlly();
-              console.log("Carte piège");
-              this.setState({gameScreen: true});
-              return false;
           } 
-        }
+    }
+    console.log("argPlayed : " + argPlayed);
+    if (argPlayed == [] || argPlayed == ""){
+        this.setState({alertDesc: "Type d'argument non valide"});
+        this.setState(() => ({alertColor: "#e00914"})); // red
+        //this.setState({top: 22});
+        this.setState({infoScreen: true});
+        return false;
+    }
+        console.log("this.state.infoScreen :" + this.state.infoScreen);
+    console.log("this.state.top7 : " + this.state.top);
     console.log("argPlayed : " + argPlayed);
     if (argPlayed === [] || argPlayed === "") {
       this.setState(() => ({alertDesc: "Argument non valide"}));
       this.setState(() => ({alertColor: "#e00914"})); // red
-      this.setState({top: 22});
+      //this.setState({top: 22});
       this.setState({infoScreen: true});
       console.log("Argument non valide");
       this.setState({gameScreen: true});
@@ -286,9 +341,12 @@ Reset alert when already red
     }
     // ----------------------------A remettre apres test
     //delete  newsArguments[index]; 
+    console.log("this.state.infoScreen :" + this.state.infoScreen);
+    console.log("this.state.top8 : " + this.state.top);
     serv._storeData("newsArguments", newsArguments);
     this.setState({newsArguments: newsArguments});
-
+    console.log("this.state.infoScreen :" + this.state.infoScreen);
+    console.log("this.state.top9 : " + this.state.top);
     // Check type player with type argument
     var players = this.state.players;
     console.log("players : " + players);
@@ -306,7 +364,7 @@ Reset alert when already red
     console.log("game.totalArgumentPO : " + game.totalArgumentPO);
 
     if (argPlayed.type == players[toPlay].type ||
-      players[toPlay].type == "") {
+      (players[toPlay].type == "" && argPlayed.type !== "undefined")) {
         // manage type player
         players[toPlay].type = argPlayed.type;
         // manage score player
@@ -322,16 +380,17 @@ Reset alert when already red
         } else {
           game.totalArgumentPO = game.totalArgumentPO + argPlayed.force;
         }
-        
+        console.log("this.state.infoScreen :" + this.state.infoScreen);
+        console.log("this.state.top10 : " + this.state.top);
         //console.log("argPlayed.force : " + argPlayed.force);
         //console.log("game.totalArgumentPO : " + game.totalArgumentPO);
         //console.log("game.totalArgumentCO : " + game.totalArgumentCO);
         // Check if all argument are played
-        if (game.totalArgumentPO >= 6 || game.totalArgumentCO >= 6 ){    this.setState({alertTitle: "Carte validée"});
+        if (game.totalArgumentPO >= 6 || game.totalArgumentCO >= 6 ){    
         this.setState({alertTitle: "Etoiles"});
         this.setState({alertDesc: "Les 6 étoiles ont été jouées ce tour, la manche est donc terminée." });
         this.setState(() => ({alertColor: "#008a01"})); //green
-        this.setState({top: 22});
+        //this.setState({top: 22});
         this.setState({infoScreen: true});
           this.endRound();
         } else {
@@ -340,20 +399,23 @@ Reset alert when already red
                 + argPlayed.value + "  Force: "
                 + argPlayed.force });
           this.setState(() => ({alertColor: "#008a01"})); //green
-          this.setState({top: 22});
+          //this.setState({top: 22});
           this.setState({infoScreen: true});
         }
         // Update players data storage
         this.setState({game: game});
         serv._storeData("game", game);
-        
+        console.log("this.state.infoScreen :" + this.state.infoScreen);
+        console.log("this.state.top11 : " + this.state.top);
         // Next player
         this.nextPlayer(toPlay);
+        console.log("this.state.infoScreen :" + this.state.infoScreen);
+        console.log("this.state.top12 : " + this.state.top);
         return true;
       } else {
-        this.setState({alertDces: "Type d'argument non valide"});
+        this.setState({alertDesc: "Type d'argument non valide"});
         this.setState(() => ({alertColor: "#e00914"})); // red
-        this.setState({top: 22});
+        //this.setState({top: 22});
         this.setState({infoScreen: true});
         return false;
       }
@@ -426,6 +488,8 @@ Reset alert when already red
       this.endRound();
       return;
     }
+    console.log("this.state.infoScreen :" + this.state.infoScreen);
+    console.log("this.state.top13 : " + this.state.top);
   //serv._storeData("toPlay", newPlayer);
   this.setState({toPlay: newPlayer});
   console.log("newPlayer2: " + newPlayer);
@@ -433,43 +497,6 @@ Reset alert when already red
   serv._storeData("argPlayed", this.state.IdArgument);
   serv._storeData("alert", "");
   serv._storeData("alertRead", false);
-  /*
-    serv._retrieveDataArray("players")
-            .then((retrievedData) => {
-              players = retrievedData;
-              for (x in players){
-                //console.log ("x : " + x);
-                //console.log ("players[x].lock : " + players[x].lock);
-                if (players[x].lock === false){
-                  //console.log ("xlock : " + x);
-                  allPlayerLock = false;
-                  if ( x >= newPlayer ){
-                    //console.log ("x >=newPlayer : " + x);
-                    newPlayer = x;
-                    break;
-                  }
-                }
-                //console.log("x : " + x);
-                //console.log("players[x].lock : " + players[x].lock);
-              }
-              //console.log("allPlayerLock : " + allPlayerLock);
-              if (allPlayerLock === true) {
-                this.endRound();
-                return;
-              }
-            //serv._storeData("toPlay", newPlayer);
-            this.setState({toPlay: newPlayer});
-            console.log("newPlayer2: " + newPlayer);
-            serv._storeData("IdArgument", 1); // To sup replace by 0
-            serv._storeData("argPlayed", this.state.IdArgument);
-            serv._storeData("alert", "");
-            serv._storeData("alertRead", false);
-        })  
-        .catch((err) => {
-          console.log ("no players in App.js l54" + err)
-          // Handle error, Object either doesn't exist, expired or a system error
-      });
-      */
   }
 
 /*
@@ -525,7 +552,7 @@ Reset alert when already red
   
   // return NFC ID
   playArgument = () => {
-      //this.setState(() => ({IdArgument: argue}));
+      this.setState(() => ({IdArgument: 1}));
       this.checkChange();
   }
 
@@ -541,11 +568,11 @@ ToDo dynamic management
 */
   setPOL = () => {
       var players = this.state.players;
-      players[0].lock = true;
-      players[0].lockType = "GA";
-      players[0].lockNb = 3;
+      players[2].lock = true;
+      players[2].lockType = "GA";
+      players[2].lockNb = 3;
       this.setState({players: players});
-      serv._storeData(players, players);
+      serv._storeData("players", players);
   }
 /*
 Static management of "Alliance"
@@ -554,9 +581,9 @@ ToDo dynamic management
   setAlly = () => {
       var players = this.state.players;
       players[this.state.toPlay].ally = "FI";
-      players[1].ally = "SE";
+      players[3].ally = "SE";
       this.setState({players: players});
-      serv._storeData(players, players);
+      serv._storeData("players", players);
   }
 
   render() {
@@ -564,7 +591,8 @@ ToDo dynamic management
     console.log("this.state.infoScreen: " + this.state.infoScreen);
     console.log("this.state.gameScreen: " + this.state.gameScreen);
     console.log("this.state.initScreen: " + this.state.initScreen);
-    console.log("this.state.players: " + this.state.players);
+    console.log("this.state.scoreScreen: " + this.state.scoreScreen);
+
     return (
       <View style={styles.container}>
         {
@@ -574,7 +602,8 @@ ToDo dynamic management
                 setParentState={newState=>this.setState(newState)}
                 players = {this.state.players}
                 game = {this.state.game}
-                removeBreakingNews = {this.removeBreakingNews}>
+                removeBreakingNews = {this.removeBreakingNews}
+                infoSceen = {this.state.infoScreen}>
             </Score>
             ) : null
         }
