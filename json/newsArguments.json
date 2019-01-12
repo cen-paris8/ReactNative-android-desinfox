@@ -1,7 +1,7 @@
-{"newsArguments": [
+    {"newsArguments": [
         {
             "IdNews": 1,
-            "IdArgument": 1,
+            "IdArgument": "04E9C2F2B85C80",
             "type": "CO",
             "force": 1,
             "value": 262532,
@@ -17,15 +17,7 @@
         },
         {
             "IdNews": 1,
-            "IdArgument": 3,
-            "type": "PO",
-            "force": 3,
-            "value": 739483,
-            "statut": "on"
-        },
-        {
-            "IdNews": 1,
-            "IdArgument": 4,
+            "IdArgument": "04CDC2F2B85C80",
             "type": "PO",
             "force": 3,
             "value": 739483,
@@ -33,7 +25,7 @@
         },
         {
             "IdNews": 2,
-            "IdArgument": 4,
+            "IdArgument": "04EDC2F2B85C80",
             "type": "PO",
             "force": 1,
             "value": 298641,
@@ -41,7 +33,7 @@
         },
         {
             "IdNews": 2,
-            "IdArgument": 5,
+            "IdArgument": "04DDC2F2B85C80",
             "type": "CO",
             "force": 2,
             "value": 437382,
@@ -57,7 +49,7 @@
         },
         {
             "IdNews": 3,
-            "IdArgument": 7,
+            "IdArgument": "04D5C2F2B85C80",
             "type": "PO",
             "force": 1,
             "value": 242786,
@@ -73,7 +65,7 @@
         },
         {
             "IdNews": 3,
-            "IdArgument": 9,
+            "IdArgument": "045FC5F2B85C81",
             "type": "PO",
             "force": 1,
             "value": 246971,
@@ -81,7 +73,7 @@
         },
         {
             "IdNews": 4,
-            "IdArgument": 10,
+            "IdArgument": "04B4C2F2B85C80",
             "type": "PO",
             "force": 1,
             "value": 280543,
@@ -89,7 +81,7 @@
         },
         {
             "IdNews": 4,
-            "IdArgument": 11,
+            "IdArgument": "04D1C2F2B85C80",
             "type": "PO",
             "force": 2,
             "value": 497174,
@@ -113,7 +105,7 @@
         },
         {
             "IdNews": 5,
-            "IdArgument": 14,
+            "IdArgument": "040DC5F2B85C81",
             "type": "CO",
             "force": 2,
             "value": 468431,
@@ -145,7 +137,7 @@
         },
         {
             "IdNews": 6,
-            "IdArgument": 18,
+            "IdArgument": "04D9C2F2B85C80",
             "type": "CO",
             "force": 2,
             "value": 439131,
@@ -153,7 +145,7 @@
         },
         {
             "IdNews": 7,
-            "IdArgument": 19,
+            "IdArgument": "04E1C2F2B85C80",
             "type": "CO",
             "force": 1,
             "value": 277390,
@@ -161,7 +153,7 @@
         },
         {
             "IdNews": 7,
-            "IdArgument": 20,
+            "IdArgument": "0411C5F2B85C81",
             "type": "CO",
             "force": 2,
             "value": 469613,
@@ -177,7 +169,7 @@
         },
         {
             "IdNews": 8,
-            "IdArgument": 22,
+            "IdArgument": "04BCC2F2B85C80",
             "type": "CO",
             "force": 2,
             "value": 438295,
@@ -193,7 +185,7 @@
         },
         {
             "IdNews": 8,
-            "IdArgument": 24,
+            "IdArgument": "04C0C2F2B85C80",
             "type": "PO",
             "force": 2,
             "value": 422910,
@@ -201,7 +193,7 @@
         },
         {
             "IdNews": 9,
-            "IdArgument": 25,
+            "IdArgument": "0415C5F2B85C81",
             "type": "PO",
             "force": 2,
             "value": 461100,
@@ -209,7 +201,7 @@
         },
         {
             "IdNews": 9,
-            "IdArgument": 26,
+            "IdArgument": "04B8C2F2B85C80",
             "type": "CO",
             "force": 1,
             "value": 290103,
@@ -217,7 +209,7 @@
         },
         {
             "IdNews": 9,
-            "IdArgument": 27,
+            "IdArgument": "0419C5F2B85C81",
             "type": "CO",
             "force": 2,
             "value": 421819,
@@ -225,7 +217,7 @@
         },
         {
             "IdNews": 0,
-            "IdArgument": 28,
+            "IdArgument": "0401C2F2B85C81",
             "type": "CO",
             "force": 2,
             "value": 404720,
@@ -233,7 +225,7 @@
         },
         {
             "IdNews": 0,
-            "IdArgument": 29,
+            "IdArgument": "04C4C2F2B85C80",
             "type": "CO",
             "force": 1,
             "value": 478992,
@@ -241,7 +233,7 @@
         },
         {
             "IdNews": 0,
-            "IdArgument": 30,
+            "IdArgument": "04C8C2F2B85C80",
             "type": "CO",
             "force": 2,
             "value": 422842,
