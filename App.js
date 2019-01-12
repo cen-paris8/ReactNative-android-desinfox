@@ -93,6 +93,7 @@ export default class App extends React.Component {
             return false;
           }
           this.setState({gameScreen: false});
+          this.setState({endRound : false});
           //console.log("checkChange");
           //console.log("this.state.alertRea : " + this.state.alertRead);
           var game = [];
@@ -160,6 +161,7 @@ export default class App extends React.Component {
     console.log("endRound");
     // calcul du score par joueur
     // Ajoute le bonus aux gagnants
+    this.setState({endRound : true});
     var game = [];
     var bonus = 0;
     var malus = 0;
@@ -168,6 +170,9 @@ export default class App extends React.Component {
     var looserNb = 0;
     var players = this.state.players;
     var breakingNews = -1;
+    var winnerPseudo = "";
+    var winnerScore = 0;
+
     /*
     serv._retrieveData("breakingNews")
             .then((retrievedBNews) => {
@@ -185,25 +190,56 @@ export default class App extends React.Component {
               game = JSON.parse(retrievedObjectGame);
               bonus = game.bonus;
               malus = game.malus;
-              if (game.totalArgumentPO > game.totalArgumentCO) {
+              console.log("game.totalArgumentPO : " + game.totalArgumentPO);
+              console.log("game.totalArgumentCO : " + game.totalArgumentCO);
+              if ((game.totalArgumentPO >=6 || game.totalArgumentCO >=6)
+                && game.totalArgumentPO > game.totalArgumentCO) {
                 winner = "PO";
-              } else {
+              } else if (game.totalArgumentCO >=6){
                 winner = "CO";
               }
+              console.log("so winner is : "+ winner);
               for(x in players) {
-                if (players[x].type == winner) {
+                if (players[x].type == winner && winner !== "" ) {
                   winnerNb++;
-                } else {
+                } else if ( players[x].type == "" ) {
+                  // nothing player don't win don't loose
+                } else if (winner !== "" ) {
                   looserNb++;
                 }
               }
+              // Set Alert to get show winner name :
+              if (winner !== "" ) {
+
+              }
+              var  alertDescWin = "Six étoiles ont été jouées ce tour. C'est ";
+              var alertDescWinPseudo = "";
+              this.setState({alertTitle: "Manche terminée"});
+              //this.setState({alertDesc: alertDescWin});
+              this.setState({alertRead: false});
+              this.setState({alertColor: "#008a01"}); //green
               for(x in players) {
-                if (players[x].type == winner && winnerNb !== 0) {
+                console.log("players[x].pseudo : " + players[x].pseudo);
+                console.log("players[x].type : " + players[x].type);
+                console.log("winnerNb : " + winnerNb);
+                if (players[x].type == winner && winnerNb > 0) {
                   players[x].score = Math.round(players[x].score + (bonus/winnerNb));
+                  // Get winner name
+                  //alertDescWin = this.state.alertDesc;
+                  alertDescWinPseudo = alertDescWinPseudo + " " + players[x].pseudo;
+                  //this.setState({alertDesc: alertDescWin });
+                } else if (players[x].type == "") {
+                  // still nothing
                 } else if (looserNb !== 0) {
                   players[x].score = Math.round(players[x].score - (malus/looserNb));
                 }
                 players[x].type = "";
+                // Get Winner end Game
+                if (players[x].score > winnerScore) {
+                    winnerPseudo = players[x].pseudo;
+                    winnerScore = players[x].score;
+                }
+                
                 //console.log("x2 : " + x);
                 //console.log("players[x].lock : " + players[x].lock);
                 //console.log("players[x].lockType : " + players[x].lockType);
@@ -222,10 +258,19 @@ export default class App extends React.Component {
                 //console.log("players[x].lock : " + players[x].lock);
                 //console.log("players[x].lockType : " + players[x].lockType);
               }
+              if (winnerNb > 1) {
+                alertDescWin = alertDescWin + alertDescWinPseudo + " qui remportent la manche et se partagent un bonus de " + bonus + ".";
+                this.setState({alertDesc: alertDescWin });
+              } else {
+                alertDescWin = alertDescWin + alertDescWinPseudo + " qui remporte la manche et gagne un bonus de " + bonus + ".";
+                this.setState({alertDesc: alertDescWin });
+              }
               this.setState({players: players});
               serv._storeData("players", players);
               game.roundNb++;
               if (game.roundNb > game.newsNb){
+                this.setState({alertTitle: "Partie terminée"});
+                this.setState({alertDesc: "Le gagnant est " + winnerPseudo + " avec un score de " + winnerScore });
                 game.endGame = true;
               }
               // Clean Data
@@ -240,6 +285,7 @@ export default class App extends React.Component {
               serv._removeData("breakingNews");
               console.log("ER - 3 scoreScreen to show");
               // Show Score screen
+              this.setState({infoScreen: true});
               this.setState({scoreScreen: true});
               this.setState({gameScreen: false});
               //this.setState({infoScreen: false});
@@ -287,11 +333,11 @@ Reset alert when already red
        console.log(" perc coucou");
       if (argumentsData[x].IdArgument == IdArgument && argumentsData[x].category == "POL"){
           console.log ("joueur perc")
-          this.setState(() => ({alertDesc: "Choisis le joueur perquisitionné"}));
-          this.setState(() => ({alertColor: "#008a01"})); //green
+          this.setState(() => ({alertDesc: "Choisis le joueur à mettre en garde à vue."}));
+          this.setState(() => ({alertColor: "#731dc0"})); //violet
           //this.setState({top: 22});
           this.setState({infoScreen: true});
-          this.setPOL();
+          //this.setPOL();
             console.log("Carte piège");
             return false;
         } else if (argumentsData[x].IdArgument == IdArgument && argumentsData[x].category == "ALI"){
@@ -299,7 +345,7 @@ Reset alert when already red
           this.setState(() => ({alertColor: "#008a01"})); //green
           //this.setState({top: 22});
           this.setState({infoScreen: true});
-          this.setAlly();
+          //this.setAlly();
             console.log("Carte piège");
             this.setState({gameScreen: true});
             return false;
@@ -321,8 +367,8 @@ Reset alert when already red
     }
     console.log("argPlayed : " + argPlayed);
     if (argPlayed == [] || argPlayed == ""){
-        this.setState({alertDesc: "Type d'argument non valide"});
-        this.setState(() => ({alertColor: "#e00914"})); // red
+        this.setState({alertDesc: "L'argument joué n'est pas valide. Sélectionnez un autre argument ou passez votre tour."});
+        this.setState(() => ({alertColor: "#731dc0"})); // violet
         //this.setState({top: 22});
         this.setState({infoScreen: true});
         return false;
@@ -331,11 +377,11 @@ Reset alert when already red
     console.log("this.state.top7 : " + this.state.top);
     console.log("argPlayed : " + argPlayed);
     if (argPlayed === [] || argPlayed === "") {
-      this.setState(() => ({alertDesc: "Argument non valide"}));
-      this.setState(() => ({alertColor: "#e00914"})); // red
+      this.setState(() => ({alertDesc: "L'argument joué n'est pas valide. Sélectionnez un autre argument ou passez votre tour."}));
+      this.setState(() => ({alertColor: "#731dc0"})); // violet
       //this.setState({top: 22});
       this.setState({infoScreen: true});
-      console.log("Argument non valide");
+      console.log("L'argument joué n'est pas valide. Sélectionnez un autre argument ou passez votre tour.");
       this.setState({gameScreen: true});
       return false;
     }
@@ -361,7 +407,7 @@ Reset alert when already red
     console.log("players : " + players);
     console.log("playeplayers[toPlay].type  : " + players[toPlay].type );
     var game = this.state.game;
-    console.log("game.totalArgumentPO : " + game.totalArgumentPO);
+    
 
     if (argPlayed.type == players[toPlay].type ||
       (players[toPlay].type == "" && argPlayed.type !== "undefined")) {
@@ -372,26 +418,28 @@ Reset alert when already red
         console.log(" argPlayed.value :" + argPlayed.value);
         players[toPlay].score = players[toPlay].score + argPlayed.value;
         console.log(" players[toPlay].score apres :" + players[toPlay].score);
+        console.log(" players[toPlay].type apres :" + players[toPlay].type);
         this.setState({players: players});
         serv._storeData("players", players);
         // Update game force 
         if (argPlayed.type == 'PO') {
           game.totalArgumentPO = game.totalArgumentPO + argPlayed.force;
         } else {
-          game.totalArgumentPO = game.totalArgumentPO + argPlayed.force;
+          game.totalArgumentCO = game.totalArgumentCO + argPlayed.force;
         }
+        console.log("game.totalArgumentPO : " + game.totalArgumentPO);
+        console.log("game.totalArgumentCO : " + game.totalArgumentCO);
         console.log("this.state.infoScreen :" + this.state.infoScreen);
         console.log("this.state.top10 : " + this.state.top);
         //console.log("argPlayed.force : " + argPlayed.force);
         //console.log("game.totalArgumentPO : " + game.totalArgumentPO);
         //console.log("game.totalArgumentCO : " + game.totalArgumentCO);
         // Check if all argument are played
-        if (game.totalArgumentPO >= 6 || game.totalArgumentCO >= 6 ){    
-        this.setState({alertTitle: "Etoiles"});
-        this.setState({alertDesc: "Les 6 étoiles ont été jouées ce tour, la manche est donc terminée." });
-        this.setState(() => ({alertColor: "#008a01"})); //green
+        if (game.totalArgumentPO >= 6 || game.totalArgumentCO >= 6 ){ 
+          console.log ("End Round");  
         //this.setState({top: 22});
-        this.setState({infoScreen: true});
+        
+          serv._storeData("game", game);
           this.endRound();
         } else {
           this.setState({alertTitle: "Carte validée"});
@@ -413,8 +461,8 @@ Reset alert when already red
         console.log("this.state.top12 : " + this.state.top);
         return true;
       } else {
-        this.setState({alertDesc: "Type d'argument non valide"});
-        this.setState(() => ({alertColor: "#e00914"})); // red
+        this.setState({alertDesc: "L'argument joué n'est pas valide. Sélectionnez un autre argument ou passez votre tour."});
+        this.setState(() => ({alertColor: "#731dc0"})); // violet
         //this.setState({top: 22});
         this.setState({infoScreen: true});
         return false;
@@ -566,11 +614,12 @@ Reset alert when already red
 Static management of "Garde à vue"
 ToDo dynamic management
 */
-  setPOL = () => {
+  setPOL = (index) => {
+    console.log("je mets en garde à vue :" + index);
       var players = this.state.players;
-      players[2].lock = true;
-      players[2].lockType = "GA";
-      players[2].lockNb = 3;
+      players[index].lock = true;
+      players[index].lockType = "GA";
+      players[index].lockNb = 3;
       this.setState({players: players});
       serv._storeData("players", players);
   }
@@ -578,16 +627,17 @@ ToDo dynamic management
 Static management of "Alliance"
 ToDo dynamic management
 */
-  setAlly = () => {
+  setAlly = (index) => {
+    console.log("je m'allie avec :" + index);
       var players = this.state.players;
       players[this.state.toPlay].ally = "FI";
-      players[3].ally = "SE";
+      players[index].ally = "SE";
       this.setState({players: players});
       serv._storeData("players", players);
   }
 
   render() {
-    console.log("this.state.alert : " + this.state.alert);
+    console.log("this.state.alertDesc : " + this.state.alertDesc);
     console.log("this.state.infoScreen: " + this.state.infoScreen);
     console.log("this.state.gameScreen: " + this.state.gameScreen);
     console.log("this.state.initScreen: " + this.state.initScreen);
@@ -616,6 +666,8 @@ ToDo dynamic management
                 checkChange = {this.checkChange}
                 nextPlayer = {this.nextPlayer}
                 passPlayer = {this.passPlayer}
+                setPOL = {this.setPOL}
+                setAlly = {this.setAlly}
                 players = {this.state.players}
                 toPlay = {this.state.toPlay}
                 top = {this.state.top}>
@@ -631,6 +683,7 @@ ToDo dynamic management
                 alertTitle = {this.state.alertTitle}
                 alertDesc = {this.state.alertDesc}
                 alertColor = {this.state.alertColor}>
+                endRound = {this.state.endRound}
             </News>
             ) : null
         }

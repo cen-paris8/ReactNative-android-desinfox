@@ -21,7 +21,15 @@ class Score extends Component {
       }
       for (x in players) {
         players[x].percent = Math.round((players[x].score*100)/total);
-        players[x].percentColor = 70 - (Math.round((players[x].score*100)/total));
+        if (players[x].percent > 25) {
+            players[x].percentColor = 70 - (Math.round((players[x].score*100)/total));
+        } else if (players[x].percent > 10)  {
+            players[x].percentColor = 60 - (Math.round((players[x].score*100)/total));
+        }
+        else {
+            players[x].percentColor = 50 - (Math.round((players[x].score*100)/total));
+        }
+        
         console.log(" x: " + x);
         console.log(" players[x].percent : " + players[x].percent );
         console.log(" players[x].percentColor: " + players[x].percentColor);

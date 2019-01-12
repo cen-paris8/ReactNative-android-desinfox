@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button , View, Text, Image, StyleSheet } from "react-native";
+import { Button , View, Text, Image, StyleSheet, TouchableHighlight } from "react-native";
 
 
   const Player1 = (props) => {
@@ -38,17 +38,35 @@ import { Button , View, Text, Image, StyleSheet } from "react-native";
                 title="Passer"
                 onPress = { props.onPress } 
                 disabled= {props.buttonPassDisable}  
-                color= {props.players.color}   />     
-            { props.players.ally == "SE" || props.players.ally == "FI" ? (
-                <Image source={require("../assets/img/icons/ally.png")} 
-                style={{ height: 50, width: 50, marginLeft:50, marginTop:5 }}/>
-                ) : null
-            } 
-            { props.players.lockType == "GA" ? (
-                <Image source={require("../assets/img/icons/handcuffs.png")}
-                style={{ height: 50, width: 50, marginLeft:50, marginTop:5 }} />
-                ) : null
-            } 
+                color= {props.players.color}   /> 
+            <View style={{flex:1, flexDirection: "row"}}>
+                <TouchableHighlight onPress={ props.setPOL }>
+                        { props.players.lockType == "GA" ? (
+                            <View style ={{backgroundColor: "#731dc0"}}>
+                                <Image source={require("../assets/img/icons/handcuffs.png")} 
+                                    style={{ height: 30, width:30, marginLeft:50, marginTop:5 }}/>
+                            </View>
+                        ) : (
+                            <View>
+                                <Image source={require("../assets/img/icons/handcuffs.png")} 
+                                    style={{ height: 30, width: 30, marginLeft:50, marginTop:5 }}/>
+                            </View>
+                        )}
+                </TouchableHighlight> 
+                <TouchableHighlight onPress={ props.setAlly }>
+                    { props.players.ally == "SE" || props.players.ally == "FI" ? (
+                        <View style={{borderColor: "#000000", borderTopWidth: 1}}>
+                            <Image source={require("../assets/img/icons/ally.png")} 
+                                style={{ height: 30, width: 30, marginLeft:50, marginTop:5 }}/>
+                        </View>
+                    ) : (
+                        <View>
+                            <Image source={require("../assets/img/icons/ally.png")} 
+                                style={{ height: 30, width: 30, marginLeft: 50, marginTop:5 }}/>
+                        </View>
+                    )}
+                </TouchableHighlight> 
+            </View> 
         </View>
     </View>
     );

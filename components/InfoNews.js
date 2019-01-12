@@ -65,6 +65,7 @@ _retrieveData = async (alert) => {
         // We have data!!
         console.log("We have data valueNews : "+ valueNews);
         var infoNews = this.dataLoop(JSON.parse(valueNews));
+        console.log("infoNews: just get from storage " + infoNews);
 
         if ( breakingNews >= 0 ){
           console.log("we have data breakingNews");
@@ -95,6 +96,7 @@ _retrieveData = async (alert) => {
         }
         
         this.setState({ news: infoNews[keyNews]});  
+        console.log("infoNews[keyNews]: state.news : " + infoNews[keyNews]);
         //delete infoNews[keyNews];
         //this._storeData("news", infoNews);
 
@@ -103,7 +105,12 @@ _retrieveData = async (alert) => {
         serv._storeData("IdNews", infoNews[keyNews].IdNews);
         
         this.props.setParentState({IdNews: infoNews[keyNews].IdNews});
-        delete infoNews[keyNews];
+        /// Pose problème là => revoir la news
+        // Uniquement en fin de manche
+        if (this.props.endRound == true) {
+          delete infoNews[keyNews];
+        } 
+        
         serv._storeData("news", infoNews);
 
       }
@@ -175,7 +182,7 @@ render() {
                   <Text style={styles.white}>{this.props.alertDesc}</Text>
                 <View>
                       <TouchableHighlight 
-                          style={{height: 50, marginTop: 5, backgroundColor:this.props.alertColor, width: 500, borderRadius: 9 }}
+                          style={{height: 50, marginTop: 30, backgroundColor:this.props.alertColor, width: 500, borderRadius: 9}}
                           onPress={()=>this.removeAlert()}>
                           <Text style={styles.white}>OK</Text>
                       </TouchableHighlight>

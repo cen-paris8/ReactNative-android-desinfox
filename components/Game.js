@@ -17,7 +17,8 @@ class Game extends Component {
         top: 22, // state
         tip: 0, // state
         playerToPlay: this.props.toPlay, //store
-        buttonPassDisable: []
+        buttonPassDisable: [], 
+        rules: false
     }
   }
 
@@ -41,6 +42,13 @@ class Game extends Component {
     console.log("press demarrer");
   }
 
+  showRules = () => {
+      console.log("showRules ");
+        //var boolRules = !this.state.rules;
+        //this.setState({rules: true});
+        //this.props.setParentState({infoScreen: false});
+  }
+
 
   removeStorage = () => {
       console.log("remove storage");
@@ -49,6 +57,14 @@ class Game extends Component {
       //this.props.setParentState({infoScreen: true});
       
   }
+
+  setPOL = (index) => {
+      console.log("setPol : " + index);
+      this.props.setPOL(index);
+  }
+  setAlly = (index) => {
+        this.props.setAlly(index);
+    }
 
   // Player click on pass until the end of the round
   pass = (index) => {
@@ -70,9 +86,21 @@ class Game extends Component {
       //this.props.setParentState({infoScreen: true})
       //console.log("this.state.playerToPlay: " + this.state.playerToPlay);
      // console.log("this.state.b: " + this.state.playerToPlay);
-        console.log("render game");        
+        console.log("render game");      
+        //console.log("this.state.rules : " + this.state.rules); 
+
     return (
         <View>
+            {this.state.rules == true ? (
+                <View>
+                    <TouchableHighlight onPress={()=> this.showRules()}>
+                        <Image style={{width: 1900, height: 1080, marginLeft: 50}} 
+                        source={require('../assets/img/regles.png')}/>
+                    </TouchableHighlight>
+                </View>
+            ) : (
+
+            
               <View style ={{
                             position: "absolute",
                             left: -500,
@@ -94,11 +122,12 @@ class Game extends Component {
                             <Player1 
                                 onPress ={ () => this.pass(2)}
                                 players = {this.props.players[2]}
-                                buttonPassDisable = {this.props.players[2].lock}>
+                                buttonPassDisable = {this.props.players[2].lock}
+                                setPOL = {() => this.setPOL(2)}>
                             </Player1>
                         </View>
                         <View style={{width: 310, height: 200}} >
-                            <TouchableHighlight onPress={()=>this.showInfo()}>                                  
+                            <TouchableHighlight onPress={()=>this.showRules()}>                                  
                                     <View style={{flex:1, flexDirection:"row", marginLeft: 120}}>
                                         <Text style={styles.force}>Règles</Text>
                                     </View>
@@ -152,6 +181,7 @@ class Game extends Component {
                         </View>
                     </View>                    
             </View>
+            )}
         </View>
     );
   }
@@ -180,15 +210,15 @@ const styles = StyleSheet.create({
         shadowColor: "#fff",
         shadowOffset: {x:0, y:0},
         shadowOpacity: 9,
-        width: 310, 
-        height: 200, 
+        width: 250, 
+        height: 150, 
         borderTopColor:"red",
         borderTopStartRadius: 9,
         borderTopWidth: 1
     },
     shadow: {
-        width: 310, 
-        height: 200
+        width: 250, //310, 
+        height: 150 //200
     }
   });
 
