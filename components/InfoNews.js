@@ -6,6 +6,7 @@ import * as serv from "../scripts/services";
 class InfoNews extends Component {
   constructor(props) {
     super(props)
+    console.log("in InfoNewConstructor")
     this.state = {
         dataLoaded: false, // state
         news: [], // store
@@ -15,117 +16,161 @@ class InfoNews extends Component {
                     position: "relative"
                   }, // state
         zIndex: -1, // state
+        //breakingNews: -1
     }
   }
 
   componentDidMount() {
     //console.log("InfoNews mounted")
-    this._retrieveData(false);
+    //this._retrieveData(false);
+    this.getData(this.props.alertDesc !== "");
     this.setState({zIndex: -1});
     this.setState({opacity: 1});
     // infoScreen is true
     this.props.setParentState({top: 22});
+    // Change after download = true to test
+    //this.props.setParentState(() => ({gameScreen: true}));
 }
 
 removeAlert = () => {
   //serv._storeData("alertRead", true);
   //serv._storeData("IdArgument", 1);
-  this.props.setParentState({infoScreen: false});
-  this.props.setParentState({top: -252});
-  // To Check if usefull...
-  // this._retrieveData(false);
-  // To Test => to remove to sup
+  console.log("remove alert");
+  console.log("this.props.undo : " + this.props.undo);
   this.props.initAlert();
+  if (this.props.undo == true) {
+    this.props.undoArg();
+    return;
+  }
+  
+  // To Check if usefull...
+  if (this.props.endRound == false) {
+    console.log("getData in remove alert");
+    //this._retrieveData(false);
+    // ToDo To test if usefull
+    //this.getData(false);
+  } else {
+    this.props.setParentState({gameScreen: false});
+  }
+  // To Test => to remove to sup
+  this.props.setParentState({infoScreen: false});
+  this.props.setParentState({top: -245});
+  
 }
 
-_retrieveData = async (alert) => {
-  try {
-    // get news from storage if already running
-   console.log("retreive News");
-   if ( alert == true && this.props.alertDesc !== undefined && this.props.alertDesc !== ""){
-    this.props.setParentState(() => ({alertDesc: ""}));
-    //this.setState({top: 22});
-    this.props.setParentState(() => ({top: 22}));
-    //this.setState({zIndex: 11});
-
-    //this.props.setParentState(() => ({IdArgument: 0}));
-     return this.props.alertDesc;
-   }
-   
-    var breakingNews = await AsyncStorage.getItem('breakingNews');
-    breakingNews = Number.parseInt(breakingNews, 10);
-    const valueNews = await AsyncStorage.getItem('news');
-    //breakingNews = str.replace('\\\"', '');
-    console.log("breakingNews: " + breakingNews);  
-      // else get a new one
-      //const valueNews = await AsyncStorage.getItem('news');
-
-      if (valueNews !== null) {
-
-        // We have data!!
-        console.log("We have data valueNews : "+ valueNews);
-        var infoNews = this.dataLoop(JSON.parse(valueNews));
-        console.log("infoNews: just get from storage " + infoNews);
-
-        if ( breakingNews >= 0 ){
-          console.log("we have data breakingNews");
-            var keyNews = breakingNews;
-        } else {
-          console.log("New one");
-            this.props.setParentState(() => ({gameScreen: true}));
-            this.props.setParentState(() => ({top: 22}));
+getDataNews = (newsObject, breakingNews) => {
+  console.log("New one : newsObject : " + newsObject);
+            var newsJson = JSON.parse(newsObject);
+            var infoNews = this.dataLoop(newsJson);
+            //this.props.setParentState(() => ({gameScreen: true}));
+            // ToDo test if usefull
+            //this.props.setParentState(() => ({top: 22}));
             var max = 0;
             for (x in infoNews) {
                 max++;
                 console.log("max: " + max);
-                var keyNews = Math.floor((Math.random() * max) + 0);  
-                console.log("infoNews[keyNews]: " + infoNews[keyNews]);
             }
-                    // set game store bonus/malus
-            serv._retrieveData("game")
-            .then((gameObject) => {
-              game = JSON.parse(gameObject);
-              game.bonus = infoNews[keyNews].bonus;
-              game.malus = infoNews[keyNews].malus;
-              serv._storeData("game", game);
+            if (breakingNews > 0) {
+              var keyNews = breakingNews;
+            } else {
+              var keyNews = Math.floor((Math.random() * max) + 0); 
+            }
+            breakingNews = keyNews;
+            console.log("infoNews: " + infoNews);
+            console.log("keyNews: " + keyNews);
+            //console.log("this.state.breakingNews: " + this.state.breakingNews);
+            console.log("score infoNews[keyNews]: " + infoNews[keyNews]);
+            console.log("score infoNews[keyNews]: " + infoNews[keyNews].bonus);
+            console.log("score infoNews[keyNews]: " + infoNews[keyNews].malus);
+            //this.setState({breakingNews: keyNews});
+            this.setState({news: infoNews[keyNews]});
+            //this.setState({Allnews: infoNews});
+            serv._storeData("news", infoNews);
+            return breakingNews;
+}
+
+getDataGame = (gameObject) => {
+  console.log("game : " + gameObject);
+          game = JSON.parse(gameObject);
+          var news = this.state.news;
+          //if ( news.bonus > 0) {
+            game.bonus = news.bonus;
+            game.malus = news.malus;
+          //} 
+          console.log ("score game news.bonus : " + game.bonus);
+          console.log ("score game news.malus : " + game.malus);
+          serv._storeData("game", game);
+}
+
+saveData = (breakingNews) => {
+  /// Save Data 
+         //this.setState({ news: infoNews[keyNews]}); 
+         var news = this.state.news;
+         //var keyNews = breakingNews;
+         console.log("this.state.breakingNews in saveData : " +  breakingNews);
+         console.log("IdNews in saveData : " +  news.IdNews);
+         this.props.setParentState({IdNews: news.IdNews}); 
+         serv._storeData("IdNews", news.IdNews);
+         
+         // TO test 
+         //serv._storeData("breakingNews", breakingNews);
+         //serv._storeData("IdNews", infoNews[keyNews].IdNews);
+         // Uniquement en fin de manche
+         // Com. pour l'instant 
+         if (this.props.endRound == true) {
+           // delete infoNews[keyNews];
+           // this.setState({ news: ""}); 
+         } 
+}
+
+getData = (alert) => {
+    console.log("retreive News");
+    console.log("this.props.alertDesc : " + this.props.alertDesc);
+  /// if Msg Card
+    if ( alert ){
+      console.log (" alert Card");
+    this.props.setParentState(() => ({top: 22}));
+    this.setState({ dataLoaded: true });
+      return this.props.alertDesc;
+    }
+
+  /// Else
+  var breakingNews = 0;
+  serv._retrieveData("breakingNews")
+            .then((breakingNewsObject) => {
+               var breakingNewsData = Number.parseInt(breakingNewsObject, 10);
+              if (breakingNewsData > 0) {
+                breakingNews = breakingNewsData;
+                console.log("breakingNews 11 : " + breakingNews);
+              } else {
+                breakingNews = -1;
+                console.log("breakingNews 11.2 : " + breakingNews);
+              }
+              return serv._retrieveData("news");
+            })
+            .then ((newsObject) => {
+              console.log("breakingNews 12 : " + breakingNews);
+              console.log ("newsObject : " + newsObject);
+              breakingNews = this.getDataNews(newsObject, breakingNews);
+              console.log("breakingNews save in storage: " + breakingNews);
+              serv._storeData("breakingNews", breakingNews);
+              console.log("breakingNews 12.2 : " + breakingNews);
+              return serv._retrieveData("game");
+            })
+            .then ((gameObject) => {
+              console.log("this.state.news : " + this.state.news);
+              console.log("breakingNews 13 : " + breakingNews);
+              console.log ("gameObject : " + gameObject);
+              this.getDataGame(gameObject);
+              this.saveData(breakingNews);
+              this.setState({ dataLoaded: true });
+              this.props.setParentState({startUpScreen: false});
+              this.props.setParentState(() => ({gameScreen: true}));
             })
             .catch((err) => {
-              console.log ("no set game in InfoNews.js l99 " + err)
+              console.log ("no set breakingNews in InfoNews.js l132 " + err)
               // Handle error, Object either doesn't exist, expired or a system error
           }); 
-        }
-        
-        this.setState({ news: infoNews[keyNews]});  
-        console.log("infoNews[keyNews]: state.news : " + infoNews[keyNews]);
-        //delete infoNews[keyNews];
-        //this._storeData("news", infoNews);
-
-        //console.log("breakingNews : " + keyNews);
-        serv._storeData("breakingNews", keyNews);
-        serv._storeData("IdNews", infoNews[keyNews].IdNews);
-        
-        this.props.setParentState({IdNews: infoNews[keyNews].IdNews});
-        /// Pose problème là => revoir la news
-        // Uniquement en fin de manche
-        if (this.props.endRound == true) {
-          delete infoNews[keyNews];
-        } 
-        
-        serv._storeData("news", infoNews);
-
-      }
-
-   } catch (error) {
-
-     // Error retrieving data
-     console.log("Error retrieving data InfoNews.js l68 : " + error );
-
-   } finally {
-      this.setState({ dataLoaded: true });
-      this.props.setParentState({startUpScreen: false});
-      //this.props.setParentState({gameScreen: true});
-      //this.props.setParentState({ IdNews: infoNews[keyNews].IdNews});
-   }
 }
 
 dataLoop = (value) => {
@@ -160,7 +205,7 @@ infoStyles = (value) => {
 hideNews = () => {
   console.log("cache la news");
   this.props.setParentState({infoScreen: false});
-  this.props.setParentState({top: -252});
+  this.props.setParentState({top: -245});
 
 }
 

@@ -240,6 +240,221 @@
             "statut": "on"
         },
         {
+            "IdNews": 1,
+            "IdArgument": "0401C2F2B85C81",
+            "type": "CO",
+            "force": 1,
+            "value": 404720,
+            "statut": "on"
+        },
+        {
+            "IdNews": 1,
+            "IdArgument": "04C4C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 478992,
+            "statut": "on"
+        },
+        {
+            "IdNews": 1,
+            "IdArgument": "04C8C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 422842,
+            "statut": "on"
+        },
+        {
+            "IdNews": 2,
+            "IdArgument": "0401C2F2B85C81",
+            "type": "CO",
+            "force": 1,
+            "value": 404720,
+            "statut": "on"
+        },
+        {
+            "IdNews": 2,
+            "IdArgument": "04C4C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 478992,
+            "statut": "on"
+        },
+        {
+            "IdNews": 2,
+            "IdArgument": "04C8C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 422842,
+            "statut": "on"
+        },{
+            "IdNews": 3,
+            "IdArgument": "0401C2F2B85C81",
+            "type": "CO",
+            "force": 1,
+            "value": 404720,
+            "statut": "on"
+        },
+        {
+            "IdNews": 3,
+            "IdArgument": "04C4C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 478992,
+            "statut": "on"
+        },
+        {
+            "IdNews": 3,
+            "IdArgument": "04C8C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 422842,
+            "statut": "on"
+        },
+        {
+            "IdNews": 4,
+            "IdArgument": "0401C2F2B85C81",
+            "type": "CO",
+            "force": 1,
+            "value": 404720,
+            "statut": "on"
+        },
+        {
+            "IdNews": 4,
+            "IdArgument": "04C4C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 478992,
+            "statut": "on"
+        },
+        {
+            "IdNews": 4,
+            "IdArgument": "04C8C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 422842,
+            "statut": "on"
+        },
+        {
+            "IdNews": 5,
+            "IdArgument": "0401C2F2B85C81",
+            "type": "CO",
+            "force": 1,
+            "value": 404720,
+            "statut": "on"
+        },
+        {
+            "IdNews": 5,
+            "IdArgument": "04C4C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 478992,
+            "statut": "on"
+        },
+        {
+            "IdNews": 5,
+            "IdArgument": "04C8C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 422842,
+            "statut": "on"
+        },
+        {
+            "IdNews": 6,
+            "IdArgument": "0401C2F2B85C81",
+            "type": "CO",
+            "force": 1,
+            "value": 404720,
+            "statut": "on"
+        },
+        {
+            "IdNews": 6,
+            "IdArgument": "04C4C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 478992,
+            "statut": "on"
+        },
+        {
+            "IdNews": 6,
+            "IdArgument": "04C8C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 422842,
+            "statut": "on"
+        },
+        {
+            "IdNews": 7,
+            "IdArgument": "0401C2F2B85C81",
+            "type": "CO",
+            "force": 1,
+            "value": 404720,
+            "statut": "on"
+        },
+        {
+            "IdNews": 7,
+            "IdArgument": "04C4C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 478992,
+            "statut": "on"
+        },
+        {
+            "IdNews": 7,
+            "IdArgument": "04C8C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 422842,
+            "statut": "on"
+        },
+        {
+            "IdNews": 8,
+            "IdArgument": "0401C2F2B85C81",
+            "type": "CO",
+            "force": 1,
+            "value": 404720,
+            "statut": "on"
+        },
+        {
+            "IdNews": 8,
+            "IdArgument": "04C4C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 478992,
+            "statut": "on"
+        },
+        {
+            "IdNews": 8,
+            "IdArgument": "04C8C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 422842,
+            "statut": "on"
+        },
+        {
+            "IdNews": 9,
+            "IdArgument": "0401C2F2B85C81",
+            "type": "CO",
+            "force": 1,
+            "value": 404720,
+            "statut": "on"
+        },
+        {
+            "IdNews": 9,
+            "IdArgument": "04C4C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 478992,
+            "statut": "on"
+        },
+        {
+            "IdNews": 9,
+            "IdArgument": "04C8C2F2B85C80",
+            "type": "CO",
+            "force": 1,
+            "value": 422842,
+            "statut": "on"
+        },
+        {
             "IdNews": 2,
             "IdArgument": 1,
             "type": "CO",

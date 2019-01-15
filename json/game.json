@@ -8,5 +8,7 @@
   "newsValue": 0,
   "newsDescription": "",
   "bonus": 0,
-  "malus": 0
+  "malus": 0,
+  "lastArgForce": 0,
+  "lastArgPart": ""
 }

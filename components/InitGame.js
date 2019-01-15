@@ -63,6 +63,7 @@ class InitGame extends Component {
 
     next = () => {
         // remove all session data 
+        this.props.setParentState({players: Data.players});
         serv._removeData('players');
         serv._removeData('news');
         serv._removeData('game');
@@ -89,10 +90,10 @@ class InitGame extends Component {
         serv._storeData("game", this.state.game);
         serv._storeData("newsArguments", this.state.newsArguments);
         serv._storeData("argumentsLinks", this.state.argumentsLinks);
+        // test initScreen
         this.props.setParentState({startUpScreen: true});
         this.props.setParentState({infoScreen: true});
         this.props.setParentState({initScreen: false});
-        
 
     }
 
