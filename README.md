@@ -6,6 +6,6 @@ https://drive.google.com/open?id=1sDeFWtnRiBBq3usbCY4axVfacbBfoYyj
 ***
 Les Photos du jeu :
 
-![GitHub Logo](https://github.com/cen-paris8/ReactNative-android-desinfox/tree/master/img/1.png)
+![GitHub Logo](https://github.com/cen-paris8/ReactNative-android-desinfox/tree/master/img/1.PNG)
 
 
